@@ -150,8 +150,11 @@ if not isinstance(result, dict):
 }
 ```
 #### API2.使用比较分析 
+
 ![腾讯图片识别之场景识别](https://upload-images.jianshu.io/upload_images/9404387-c505a937afa21b29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ![百度图像识别之通用物体和场景识别](https://upload-images.jianshu.io/upload_images/9404387-39fff801cbc236bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ##### 百度与腾讯AI的输出结果比较
 百度通用物体和场景识别能够高精确度识别出景点名称并将其进行归类，输出结果附上文本信息，输出数据结果和腾讯的api对比更加精准，容许图片的模糊度较腾讯的场景识别高，识别图像能力也更强。
 
@@ -168,7 +171,10 @@ if not isinstance(result, dict):
 ###### 输入输出限制及API使用定价表
 - 通用物体和场景识别
 [百度场景识别价目表来源](https://ai.baidu.com/tech/body/num)
+
 ![免费VS付费](https://upload-images.jianshu.io/upload_images/9404387-c95620335be30e75.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 - 语音合成
 [百度语音合成价目表来源](https://ai.baidu.com/tech/speech/tts)
+
 ![免费VS付费](https://upload-images.jianshu.io/upload_images/9404387-0a01c7f4f067c230.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
