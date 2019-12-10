@@ -33,6 +33,7 @@
 
 ####  产品原型
 [点击此处查看完整原型链接](http://seventeen1223.gitee.io/prototype)
+
 *首页界面设计
 
 ![首页](https://upload-images.jianshu.io/upload_images/9404387-1d00b4c64dd6e8d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -53,7 +54,7 @@
 
 ![其他](https://upload-images.jianshu.io/upload_images/9404387-e1445a4aae37fad2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-#### API使用水平
+#### API1.使用水平
 （1）通用物体和场景识别（使用百度API）
 - 接口描述：该请求用于通用物体及场景识别，即对于输入的一张图片（可正常解码，且长宽比适宜），输出图片中的多个物体及场景标签。
 - 接口地址:[百度图像识别之通用物体和场景识别](https://ai.baidu.com/ai-doc/IMAGERECOGNITION/Xk3bcxe21)
@@ -148,4 +149,26 @@ if not isinstance(result, dict):
     "idx":1
 }
 ```
-#### API2.使用比较分析
+#### API2.使用比较分析 
+![腾讯图片识别之场景识别](https://upload-images.jianshu.io/upload_images/9404387-c505a937afa21b29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![百度图像识别之通用物体和场景识别](https://upload-images.jianshu.io/upload_images/9404387-39fff801cbc236bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+##### 百度与腾讯AI的输出结果比较
+百度通用物体和场景识别能够高精确度识别出景点名称并将其进行归类，输出结果附上文本信息，输出数据结果和腾讯的api对比更加精准，容许图片的模糊度较腾讯的场景识别高，识别图像能力也更强。
+
+#### API3.使用后风险报告 
+
+###### 产品使用可行性
+
+（1）技术方面可行性
+*   在市面上现有的场景识别API产品中，我们选择了精准度高，识别度较腾讯等场景识别API更为准确的百度通用物体和场景识别API。
+*   百度通用物体和场景识别API仍然存在图片过于模糊难以分辨的技术风险，但是这样的识别结果不会时常发生，对用户来讲是小概率风险，给用户带来的负面体验较少，不会压过正面影响的机率。
+（2）市场方面可行性
+*   市场需求大，可实施性强。
+*  一款轻量级别APP，不会消耗过多内存，调用API成本也并不高昂。
+###### 输入输出限制及API使用定价表
+- 通用物体和场景识别
+[百度场景识别价目表来源](https://ai.baidu.com/tech/body/num)
+![免费VS付费](https://upload-images.jianshu.io/upload_images/9404387-c95620335be30e75.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+- 语音合成
+[百度语音合成价目表来源](https://ai.baidu.com/tech/speech/tts)
+![免费VS付费](https://upload-images.jianshu.io/upload_images/9404387-0a01c7f4f067c230.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
