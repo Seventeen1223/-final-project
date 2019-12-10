@@ -35,6 +35,12 @@
 [点击此处查看完整原型链接](http://seventeen1223.gitee.io/prototype)
 * 首页界面设计
 ![首页](https://upload-images.jianshu.io/upload_images/9404387-1d00b4c64dd6e8d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+* 识别界面设计
+![识别成功](https://upload-images.jianshu.io/upload_images/9404387-1311bcd39ef6ef4a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![识别失败](https://upload-images.jianshu.io/upload_images/9404387-321db19ee656f7a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![识别历史](https://upload-images.jianshu.io/upload_images/9404387-756c33552da6779f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![其他](https://upload-images.jianshu.io/upload_images/9404387-e1445a4aae37fad2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ####  产品架构
 ####  API调用展示
