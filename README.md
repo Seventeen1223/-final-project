@@ -33,9 +33,11 @@
 
 ####  产品原型
 [点击此处查看完整原型链接](http://seventeen1223.gitee.io/prototype)
+
 * 首页界面设计
 
 ![首页](https://upload-images.jianshu.io/upload_images/9404387-1d00b4c64dd6e8d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240
+
 *识别成功界面设计
 
 ！[识别成功] （https://upload-images.jianshu.io/upload_images/9404387-1311bcd39ef6ef4a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240）
