@@ -2,6 +2,8 @@
  | 项目  | 看图知景|  
  | --------   | -----:   | 
  | 项目负责人       | 孔秋虹      |
+ | 项目进程  | 已完成|  
+ |项目迭代 | 3.0版本|
 ### 项目：看图知景
 ####  产品定位
 本产品旨在构建一个可以帮助人们上传照片即可获取景点信息的平台。
@@ -109,13 +111,22 @@ import base64
 通用物体和场景识别
 '''
 
+# encoding:utf-8
+
+import requests
+import base64
+
+'''
+通用物体和场景识别
+'''
+
 request_url = "https://aip.baidubce.com/rest/2.0/image-classify/v2/advanced_general"
 # 二进制方式打开图片文件
-f = open('[本地文件]', 'rb')
+f = open('C:/Users/ASUS/Desktop/museum.jpg', 'rb')
 img = base64.b64encode(f.read())
 
 params = {"image":img}
-access_token = '[调用鉴权接口获取的token]'
+access_token = '24.805ba36f70a4d0e6d743401eb732d35c.2592000.1579537426.282335-18081781'
 request_url = request_url + "?access_token=" + access_token
 headers = {'content-type': 'application/x-www-form-urlencoded'}
 response = requests.post(request_url, data=params, headers=headers)
@@ -123,73 +134,167 @@ if response:
     print (response.json())
 ```
 - 输出代码示例:
-```HTTP/1.1 200 OK
-x-bce-request-id: 73c4e74c-3101-4a00-bf44-fe246959c05e
-Cache-Control: no-cache
-Server: BWS
-Date: Tue, 18 Oct 2016 02:21:01 GMT
-Content-Type: application/json;charset=UTF-8
-{
-	"log_id": 327863200205075661,
-	"result_num": 5,
-	"result": [{
-		"score": 0.967622,
-		"root": "公众人物",
-		"baike_info": {
-			"baike_url": "http://baike.baidu.com/item/%E6%96%B0%E5%9E%A3%E7%BB%93%E8%A1%A3/8035884",
-			"image_url": "http://imgsrc.baidu.com/baike/pic/item/91ef76c6a7efce1b27893518a451f3deb58f6546.jpg",
-			"description": "新垣结衣(Aragaki Yui)，1988年6月11日出生于冲绳县那霸市。日本女演员、歌手、模特。毕业于日出高中。2001年，参加《nicola》模特比赛并获得最优秀奖。2005年，因出演现代剧《涩谷15》而作为演员出道。2006年，参演校园剧《我的老大，我的英雄》；同年，她还出版了个人首本写真集《水漾青春》。2007年，她从日出高校毕业后开始专注于演艺发展，并发表个人首张音乐专辑《天空》；同年，新垣结衣还主演了爱情片《恋空》，而她也凭借该片获得了多个电影新人奖项。2010年，主演爱情片《花水木》。2011年，主演都市剧《全开女孩》。2012年，相继参演现代剧《Legal High》、剧情片《剧场版新参者：麒麟之翼》。2013年，主演都市剧《飞翔情报室》。2014年，她主演了剧情片《黎明的沙耶》。2016年，主演爱情喜剧《逃避虽可耻但有用》，并凭借该剧获得了多个电视剧女主角奖项。2017年，主演爱情片《恋爱回旋》，凭借该片获得第60届蓝丝带奖最佳女主角；同年11月，她还凭借医疗剧《Code Blue 3》获得第94届日剧学院赏最佳女配角。"
-		},
-		"keyword": "新垣结衣"
-	},
-	{
-		"score": 0.716067,
-		"root": "人物-人物特写",
-		"keyword": "头发"
-	},
-	{
-		"score": 0.421281,
-		"root": "商品-穿戴",
-		"keyword": "围巾"
-	},
-	{
-		"score": 0.22347,
-		"root": "商品-五金",
-		"keyword": "拉链"
-	},
-	{
-		"score": 0.028031,
-		"root": "商品-穿戴",
-		"keyword": "脖套"
-	}]
-}
+```
+{'log_id': 4366321357176858870, 
+'result_num': 5, 
+'result': [{'score': 0.462137, 'root': '自然风景-天空',
+ 'keyword': '天空'}, 
+{'score': 0.335543, 'root': '建筑-传统建筑', 
+'keyword': '宫殿'},
+ {'score': 0.218333,
+ 'root': '非自然图像-彩色动漫', 'keyword': '卡通动漫人物'}, 
+{'score': 0.114476, 'root': '建筑-传统建筑',
+ 'keyword': '城楼'}, 
+{'score': 0.011721, 'root': '商品-绘画', 'keyword': '图画'}]}
+
 ```
 （2）语音合成（使用百度API）
 - 接口描述：基于该接口，开发者可以轻松的获取语音合成能力
 - 接口地址:[百度语音技术之语音合成](https://ai.baidu.com/ai-doc/SPEECH/7k38y8ier)
 - 输入代码示例
-```result  = client.synthesis('你好百度', 'zh', 1, {
-    'vol': 5,
-})
-
-# 识别正确返回语音二进制 错误则返回dict 参照下面错误码
-if not isinstance(result, dict):
-    with open('auido.mp3', 'wb') as f:
-        f.write(result)
 ```
-- 输入代码示例
-```// 成功返回二进制文件流
-// 失败返回
-{
-    "err_no":500,
-    "err_msg":"notsupport.",
-    "sn":"abcdefgh",
-    "idx":1
-}
+# coding=utf-8
+import sys
+import json
+
+import os
+
+import time
+
+IS_PY3 = sys.version_info.major == 3
+if IS_PY3:
+    from urllib.request import urlopen
+    from urllib.request import Request
+    from urllib.error import URLError
+    from urllib.parse import urlencode
+    from urllib.parse import quote_plus
+# else:
+#     import urllib2
+#     from urllib import quote_plus
+#     from urllib2 import urlopen
+#     from urllib2 import Request
+#     from urllib2 import URLError
+#     from urllib import urlencode
+
+class DemoError(Exception):
+    pass
+
+class VoiceMerge():
+    def __init__(self, apiKey='4mI1KB7u0CaCtR73Pd89DGbA', secretKey='S0cujdLjCZomNYkM0Pbp81FogAG9UoyO'):
+        self.API_KEY = apiKey
+        self.SECRET_KEY = secretKey
+
+    def voiceMerge(self, text='', outFilePath='', per=1, spd=5, pit=5, vol=5, aue=3, cuid='', scope='audio_tts_post'):
+        '''
+        :param text: 需要转换为语音的文本内容
+        :param outFilePath: 输出文件路径
+        :param per: 发音人，0-普通女声，1-普通男生，3-情感合成-度逍遥，4-情感合成-度丫丫，默认为 0.
+        :param spd: 语速，取值0-15，默认为5中语速
+        :param pit: 音调，取值0-15，默认为5中语调
+        :param vol: 音量，取值0-9，默认为5中音量
+        :param aue: 下载的文件格式, 3 - mp3(default)，4 - pcm-16k，5 - pcm-8k，6 - wav
+        :param cuid: 用户唯一标识，用来区分用户，填写机器 MAC 地址或 IMEI 码，长度为60以内
+        :param scope: 有此scope表示有tts能力，没有请在网页里勾选
+        :return:
+            注意文件名称与 aue 要相匹配
+        '''
+        TTS_URL = 'http://tsn.baidu.com/text2audio'
+        FORMATS = {3: "mp3", 4: "pcm", 5: "pcm", 6: "wav"}
+        format = FORMATS[aue]
+
+        cuid = str(cuid) if cuid else f"{int(time.time()*1000)}"
+
+
+        token = self.getToken(scope)
+        tex = quote_plus(text)  # 此处 text 需要两次 urlencode
+        print(tex)
+        params = {'tok': token, 'tex': tex, 'per': per, 'spd': spd, 'pit': pit, 'vol': vol, 'aue': aue, 'cuid': cuid,
+                  'lan': 'zh', 'ctp': 1}  # lan ctp 固定参数
+
+        data = urlencode(params)
+        print('test on Web Browser' + TTS_URL + '?' + data)
+
+        req = Request(TTS_URL, data.encode('utf-8'))
+        has_error = False
+        try:
+            f = urlopen(req)
+            result_str = f.read()
+
+            headers = dict((name.lower(), value) for name, value in f.headers.items())
+
+            has_error = ('content-type' not in headers.keys() or headers['content-type'].find('audio/') < 0)
+        except  URLError as err:
+            print('asr http response http code : ' + str(err.code))
+            result_str = err.read()
+            has_error = True
+
+        # save_file = "error.txt" if has_error else f'result_{per}_{spd}.' + format
+        flt = outFilePath.split('.')
+        save_file = f"{flt[0]}_error.txt" if has_error else f'{outFilePath}'
+        with open(save_file, 'wb') as of:
+            of.write(result_str)
+
+        if has_error:
+            if (IS_PY3):
+                result_str = str(result_str, 'utf-8')
+            print("tts api  error:" + result_str)
+
+        print("result saved as :" + save_file)
+
+
+    def getToken(self, scope):
+        TOKEN_URL = 'http://openapi.baidu.com/oauth/2.0/token'
+        print("fetch token begin")
+        params = {'grant_type': 'client_credentials',
+                  'client_id': self.API_KEY,
+                  'client_secret': self.SECRET_KEY}
+        post_data = urlencode(params)
+        if (IS_PY3):
+            post_data = post_data.encode('utf-8')
+        req = Request(TOKEN_URL, post_data)
+        try:
+            f = urlopen(req, timeout=5)
+            result_str = f.read()
+        except URLError as err:
+            print('token http response http code : ' + str(err.code))
+            result_str = err.read()
+        if (IS_PY3):
+            result_str = result_str.decode()
+
+        print(result_str)
+        result = json.loads(result_str)
+        print(result)
+        if ('access_token' in result.keys() and 'scope' in result.keys()):
+            if not scope in result['scope'].split(' '):
+                raise DemoError('scope is not correct')
+            print('SUCCESS WITH TOKEN: %s ; EXPIRES IN SECONDS: %s' % (result['access_token'], result['expires_in']))
+            return result['access_token']
+        else:
+            raise DemoError('MAYBE API_KEY or SECRET_KEY not correct: access_token or scope not found in token response')
+
+
+
+if __name__ == '__main__':
+    text = "沈阳故宫博物院欢迎您"
+    rpath = os.getcwd()
+    outFilePath = os.path.join( 'test3.mp3')
+    vm = VoiceMerge()
+    vm.voiceMerge(text=text, outFilePath=outFilePath)
+```
+- 输出代码示例
+```
+fetch token begin
+{"access_token":"24.5d0b729702b768bb91ad33f3c470939f.2592000.1579539688.282335-17537140","session_key":"9mzdDtaDwbOhk2UNyNCEW57DKKwcVYJqciD7HjBHMcj4ykLsMPZcoNrqcYRkoKeB75wgwgyDYDvgvwJ4x1VGjTa9yeWlew==","scope":"audio_voice_assistant_get brain_enhanced_asr audio_tts_post public brain_all_scope picchain_test_picchain_api_scope wise_adapt lebo_resource_base lightservice_public hetu_basic lightcms_map_poi kaidian_kaidian ApsMisTest_Test\u6743\u9650 vis-classify_flower lpq_\u5f00\u653e cop_helloScope ApsMis_fangdi_permission smartapp_snsapi_base iop_autocar oauth_tp_app smartapp_smart_game_openapi oauth_sessionkey smartapp_swanid_verify smartapp_opensource_openapi smartapp_opensource_recapi fake_face_detect_\u5f00\u653eScope vis-ocr_\u865a\u62df\u4eba\u7269\u52a9\u7406 idl-video_\u865a\u62df\u4eba\u7269\u52a9\u7406","refresh_token":"25.bae875974408855b0982af03fcd9cb19.315360000.1892307688.282335-17537140","session_secret":"fc2c8b306d6d0cfdfbbabccf5abccc4d","expires_in":2592000}
+
+{'access_token': '24.5d0b729702b768bb91ad33f3c470939f.2592000.1579539688.282335-17537140', 'session_key': '9mzdDtaDwbOhk2UNyNCEW57DKKwcVYJqciD7HjBHMcj4ykLsMPZcoNrqcYRkoKeB75wgwgyDYDvgvwJ4x1VGjTa9yeWlew==', 'scope': 'audio_voice_assistant_get brain_enhanced_asr audio_tts_post public brain_all_scope picchain_test_picchain_api_scope wise_adapt lebo_resource_base lightservice_public hetu_basic lightcms_map_poi kaidian_kaidian ApsMisTest_Test权限 vis-classify_flower lpq_开放 cop_helloScope ApsMis_fangdi_permission smartapp_snsapi_base iop_autocar oauth_tp_app smartapp_smart_game_openapi oauth_sessionkey smartapp_swanid_verify smartapp_opensource_openapi smartapp_opensource_recapi fake_face_detect_开放Scope vis-ocr_虚拟人物助理 idl-video_虚拟人物助理', 'refresh_token': '25.bae875974408855b0982af03fcd9cb19.315360000.1892307688.282335-17537140', 'session_secret': 'fc2c8b306d6d0cfdfbbabccf5abccc4d', 'expires_in': 2592000}
+SUCCESS WITH TOKEN: 24.5d0b729702b768bb91ad33f3c470939f.2592000.1579539688.282335-17537140 ; EXPIRES IN SECONDS: 2592000
+%E6%B2%88%E9%98%B3%E6%95%85%E5%AE%AB%E5%8D%9A%E7%89%A9%E9%99%A2%E6%AC%A2%E8%BF%8E%E6%82%A8
+test on Web Browserhttp://tsn.baidu.com/text2audio?tok=24.5d0b729702b768bb91ad33f3c470939f.2592000.1579539688.282335-17537140&tex=%25E6%25B2%2588%25E9%2598%25B3%25E6%2595%2585%25E5%25AE%25AB%25E5%258D%259A%25E7%2589%25A9%25E9%2599%25A2%25E6%25AC%25A2%25E8%25BF%258E%25E6%2582%25A8&per=1&spd=5&pit=5&vol=5&aue=3&cuid=1576947687661&lan=zh&ctp=1
+result saved as :test3.mp3
 ```
 #### API2.使用比较分析 
 
-![腾讯图片识别之场景识别](https://upload-images.jianshu.io/upload_images/9404387-c505a937afa21b29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![腾讯图片识别之场景识别](https://upload-images.jianshu.io/upload_images/9404387-ef71c16e29b8c86a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ![百度图像识别之通用物体和场景识别](https://upload-images.jianshu.io/upload_images/9404387-39fff801cbc236bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
