@@ -1,3 +1,7 @@
+### 项目：看图识景
+
+[Powerpoint链接](https://gitee.com/Seventeen1223/PPT/blob/master/%E7%9C%8B%E5%9B%BE%E8%AF%86%E6%99%AF.pptx)
+
 | 发布日期  | 2019年12月17日|  
   | --------   | -----:   | 
 | 项目  | 看图识景|  
